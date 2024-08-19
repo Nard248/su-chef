@@ -5,6 +5,7 @@ import ProductCard from '../components/ProductCard';
 import PromotionCard from '../components/PromotionCard';
 import FilterPanel from '../components/FilterPanel';
 import SidebarFilterPanel from '../components/SidebarFilterPanel';
+import Layout from '../components/Layout';  // Import Layout component
 import mockProducts from '../data/mockProducts.json';
 import mockPromotions from '../data/mockPromotions.json';
 
@@ -37,9 +38,9 @@ function Catalogue() {
     };
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <Layout>
             <FilterPanel onFilterChange={handleFilterChange} />
-            <Box sx={{ display: 'flex', flexGrow: 1, mt: '64px' }}> {/* Layout for sidebar and content */}
+            <Box sx={{ display: 'flex', flexGrow: 1 }}>
                 <SidebarFilterPanel onFilterChange={handleFilterChange} />
                 <Box sx={{ flexGrow: 1 }}>
                     <Container maxWidth="lg" sx={{ my: 4 }}>
@@ -75,7 +76,7 @@ function Catalogue() {
                     </Container>
                 </Box>
             </Box>
-        </Box>
+        </Layout>
     );
 }
 
