@@ -8,9 +8,10 @@ import Catalogue from './pages/Catalogue';
 import Blog from './pages/Blog';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import Login from './pages/Login';
-import Register from './pages/Register';
 import Footer from './components/Footer';
+import LoginForm from './components/LoginForm';
+import RegisterForm from './components/RegisterForm';
+import { AuthProvider } from './components/AuthProvider';  // Import AuthProvider
 import './styles/animations.css';
 
 function AnimatedRoutes() {
@@ -29,8 +30,10 @@ function AnimatedRoutes() {
                     <Route path="/blog" element={<Blog />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
+                    {/*
+                      We can remove these routes if we are handling login/register
+                      with modals as part of the navbar instead of separate pages
+                    */}
                 </Routes>
             </CSSTransition>
         </TransitionGroup>
@@ -39,11 +42,13 @@ function AnimatedRoutes() {
 
 function App() {
     return (
-        <Router>
-            <Navbar />
-            <AnimatedRoutes />
-            <Footer />
-        </Router>
+        <AuthProvider>
+            <Router>
+                <Navbar />
+                <AnimatedRoutes />
+                <Footer />
+            </Router>
+        </AuthProvider>
     );
 }
 
